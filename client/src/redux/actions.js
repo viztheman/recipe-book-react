@@ -48,3 +48,17 @@ export const deleteRecipeRequest = recipe => async dispatch => {
 export const deleteRecipeResponse = recipe => {
   return {type: ActionTypes.DELETE_RECIPE_RESPONSE, payload: {recipe}};
 };
+
+export const editRecipeRequest = recipe => async dispatch => {
+  await axios({
+    url: `/api/recipes/${recipe.id}`,
+	method: 'PATCH',
+	headers: {'Content-Type': 'application/json'},
+	data: recipe
+  });
+  dispatch(editRecipeResponse(recipe));
+};
+
+export const editRecipeResponse = recipe => {
+  return {type: ActionTypes.EDIT_RECIPE_RESPONSE, payload: {recipe}};	
+};

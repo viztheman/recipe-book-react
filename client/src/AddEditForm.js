@@ -30,18 +30,18 @@ export default class AddEditForm extends Component {
 
   onSaveClick() {
 	const {title, ingredients, steps, notes} = this.state;
-
-  	this.props.onSaveClick({title, ingredients, steps, notes});
+	const recipe = {title, ingredients, steps, notes};
+	if (this.state.id) recipe.id = this.state.id;
+	
+	this.props.onSaveClick(recipe);
   }
 
   componentDidMount() {
 	const {current} = this.props;
-	console.dir(current);
-
-    if (!current)
-	  return;
+    if (!current) return;
 
     this.setState({
+	  id: current.id,
 	  title: current.title,
 	  ingredients: current.ingredients,
 	  steps: current.steps,

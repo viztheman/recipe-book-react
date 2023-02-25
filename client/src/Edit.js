@@ -8,13 +8,18 @@ class Edit extends Component {
     this.props.changeScreen('Recipe');
   }
 
+  async onSaveClick(recipe) {
+    await this.props.editRecipeRequest(recipe);
+	this.props.changeScreen('Recipe');
+  }
+
   render() {
 	const {current} = this.props;
 
     return (
       <div className="flex-grow-1 flex-column ms-4">
         <h1>Edit Recipe</h1>
-        <AddEditForm onCancelClick={() => this.onCancelClick()} current={current} />
+        <AddEditForm onSaveClick={x => this.onSaveClick(x)} onCancelClick={() => this.onCancelClick()} current={current} />
       </div>
     );
   }
@@ -25,7 +30,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-  changeScreen: Actions.changeScreen
+  changeScreen: Actions.changeScreen,
+  editRecipeRequest: Actions.editRecipeRequest
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);

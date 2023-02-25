@@ -47,6 +47,14 @@ export default function reducer(state = initialState, action) {
 		current: filteredRecipes.length > 0 ? filteredRecipes[0] : null
 	  };
 
+    case ActionTypes.EDIT_RECIPE_RESPONSE:
+	  console.dir(state.recipes);
+	  const index = state.recipes.findIndex(x => x.id === action.payload.recipe.id);
+	  const editedRecipes = [...state.recipes];
+	  editedRecipes.splice(index, 1, action.payload.recipe);
+
+	  return {...state, recipes: editedRecipes};
+
     default:
       return state;
   }

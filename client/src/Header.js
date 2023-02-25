@@ -17,20 +17,31 @@ class Header extends Component {
   }
 
   render() {
+	const {screen, current} = this.props;
+
+	const showDelete = (screen === 'Recipe' && current);
+	const showEdit = (screen === 'Recipe' && current);
+	const showAdd = (screen === 'Recipe');
+
     return (
       <Navbar>
         <NavbarBrand className="flex-grow-1">&#x1F4D3; Recipe Book</NavbarBrand>
-        <Button color="danger" size="sm" className="me-2" onClick={() => this.onDeleteClick()}>Delete</Button>
-        <Button color="secondary" size="sm" className="me-2" onClick={() => this.onEditClick()}>Edit</Button>
-        <Button color="success" size="sm" onClick={() => this.onAddClick()}>Add</Button>
+       	{showDelete && <Button color="danger" size="sm" className="me-2" onClick={() => this.onDeleteClick()}>Delete</Button>}
+        {showEdit && <Button color="secondary" size="sm" className="me-2" onClick={() => this.onEditClick()}>Edit</Button>}
+        {showAdd && <Button color="success" size="sm" onClick={() => this.onAddClick()}>Add</Button>}
       </Navbar>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  screen: state.screen,
+  current: state.current
+});
 
 const mapDispatchToProps = {
   changeScreen: Actions.changeScreen,
   openDeleteModal: Actions.openDeleteModal
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
