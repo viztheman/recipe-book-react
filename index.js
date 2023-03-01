@@ -7,7 +7,9 @@ const apiKey = require('./lib/apikey');
 const cors = require('cors');
 
 const app = express();
+app.set('view engine', 'pug');
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'client/build')));
 //app.use('/api', apiKey(), require('./lib/routers/api/recipes'));
 app.use('/api', require('./lib/routers/api/recipes'));
 

@@ -109,3 +109,6 @@ dist
 # SQLITE files
 *.db
 *.sqlite
+
+# Builds
+client/build/

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import * as Actions from './redux/actions';
 import {connect} from 'react-redux';
 
 class Recipe extends Component {

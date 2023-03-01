@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FormGroup, ListGroup, ListGroupItem, Input} from 'reactstrap';
+import {ListGroup, ListGroupItem} from 'reactstrap';
 import Search from './Search';
 import * as Actions from './redux/actions';
 import {connect} from 'react-redux';
